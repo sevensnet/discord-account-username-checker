@@ -1,54 +1,52 @@
 ============================================================
-           DISCORD USERNAME SCANNER & CHECKER
+           DISCORD USERNAME SCANNER (PYTHON VERSION)
 ============================================================
 
-A lightweight, customizable Python tool designed to check the 
-availability of Discord usernames based on specific character 
-requirements.
+A customizable Python tool to check for available Discord 
+usernames. This version runs directly via the Python 
+interpreter.
 
---- FEATURES ---
+--- PREREQUISITES ---
 
-* Resume Support: Automatically skips names already checked 
-  (saves progress in checked_names.txt).
-* Customization: Choose exact length and toggle between 
-  letters, numbers, and periods.
-* Anti-Ban Logic: Includes randomized delays and browser 
-  spoofing to mimic human behavior.
-* Export: Saves all available names to available_names.txt.
+1. Python 3.x installed on your system.
+2. The 'requests' library.
 
---- HOW TO USE ---
+If you don't have the library, install it via your terminal:
+   pip install requests
 
-1. Run the main.exe (or main.py if using Python).
-2. Follow the on-screen prompts to set your requirements:
-   - Length: The number of characters (e.g., 3).
-   - Characters: Toggle (y/n) for letters, numbers, and dots.
-   - Delay: Set the speed (Recommended: 3 to 6 seconds).
-3. The scanner will begin. Available names will appear in green 
-   or with a [+] symbol and be saved immediately to the text file.
+--- HOW TO RUN ---
 
---- USERNAME RULES (DISCORD) ---
+1. Open your terminal or command prompt.
+2. Navigate to the folder containing 'main.py'.
+3. Run the script using:
+   python main.py
 
-The tool automatically follows these Discord-enforced rules:
-* No consecutive periods (e.g., "a..b" is skipped).
-* Cannot start or end with a period (e.g., ".ab" is skipped).
-* Only lowercase letters (a-z), numbers (0-9), and dots (.) 
-  are allowed.
+--- CONFIGURATION OPTIONS ---
 
---- IMPORTANT NOTES & SAFETY ---
+Upon startup, the script will ask for:
+* Length: How many characters the name should be (e.g., 3).
+* Letters/Numbers/Dots: Toggle each character type (y/n).
+* Delay: Time in seconds between checks. 
+  - Recommended: 3.0 to 6.0 seconds to avoid IP bans.
 
-* RATE LIMITING: If you see "Rate Limited" messages, it means 
-  you are checking too fast. The tool will pause for 2 minutes. 
-  To avoid this, use a higher delay (5+ seconds) or a VPN.
-* AVAILABILITY: A "Available" result means the Discord API 
-  returned a 404. Some names may still be reserved by Discord 
-  system accounts or banned users.
-* TERMS OF SERVICE: Use this tool responsibly. Excessive 
-  automated requests to any API can result in an IP ban.
+--- AUTOMATIC LOGGING ---
 
---- FILES ---
+The script generates two files in the same directory:
+1. checked_names.txt:  A list of every name already checked.
+                       This allows you to close the script 
+                       and resume exactly where you left off.
+2. available_names.txt: A list of names that returned a 404 
+                       (Available) status from Discord.
 
-* main.exe           - The application.
-* checked_names.txt  - History of names scanned (Do not delete 
-                       if you want to resume later).
-* available_names.txt - Your "hits" / available usernames.
+--- IMPORTANT SAFETY & LIMITS ---
+
+* RATE LIMITING: Discord's API is protected by Cloudflare. 
+  If you check names too quickly, you will be rate limited 
+  (Status 429). The script will automatically detect this 
+  and pause for 2 minutes before trying again.
+* INVALID NAMES: The script automatically skips names that 
+  start/end with a dot or contain ".." as per Discord's rules.
+* DISCLAIMER: Use this tool responsibly. Excessive automated 
+  requests can lead to temporary or permanent IP blocks.
+
 ============================================================
